@@ -1,16 +1,23 @@
 <script setup>
 import { ref } from 'vue'
-import KnappRad from './components/KnappRad.vue';
-import ResultatRad from './components/ResultatRad.vue';
+import KnappRad from './components/KnappRad.vue'
+import ResultatRad from './components/ResultatRad.vue'
+import PoangRad from './components/PoangRad.vue'
 
-const knappar=ref(['Sten', 'Sax', 'Påse']);
+const knappar = ref(['Sten', 'Sax', 'Påse'])
 const score = ref({ spelare: 0, dator: 0 })
-const resultat = ref({});
+const resultat = ref({})
+const vinnare = ref('')
+
+function raknaPoang(v) {
+  vinnare.value = v
+}
 
 function hittaVinnare(valdaKnappar) {
-  let spelare=knappar.value.indexOf(valdaKnappar.spelare)
-  let dator=knappar.value.indexOf(valdaKnappar.dator)
-  resultat.value={spelare: spelare, dator: dator}
+  vinnare.value = ''
+  let spelare = knappar.value.indexOf(valdaKnappar.spelare)
+  let dator = knappar.value.indexOf(valdaKnappar.dator)
+  resultat.value = { spelare: spelare, dator: dator }
 }
 
 function reset() {
@@ -30,15 +37,12 @@ function reset() {
   </header>
 
   <main>
-    <KnappRad :knappar="knappar" @valda-knappar="hittaVinnare"/>
-    
-    <ResultatRad :valda-knappar="resultat" />
-    
-    <div class="score">
-      <p>
-        <span id="spelare">{{ score.spelare }}</span> - <span id="dator">{{ score.dator }}</span>
-      </p>
-    </div>
+    <KnappRad :knappar="knappar" @valda-knappar="hittaVinnare" />
+
+    <ResultatRad :valda-knappar="resultat" @vinnare="raknaPoang" />
+
+    <PoangRad :vinnare="vinnare" />
+
     <div class="score">
       <button id="nolla" @click="reset">Nollställ poängen</button>
     </div>
@@ -73,5 +77,4 @@ button#nolla {
 button#nolla:hover {
   background-color: #7bd7bc;
 }
-
 </style>
