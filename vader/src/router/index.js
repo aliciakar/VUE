@@ -9,15 +9,17 @@ const router = createRouter({
       name: 'home',
       component: ForecastView,
     },
-    /*        {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-*/
+    {
+      path: '/locations',
+      name: 'Locations',
+      component: () => import('../views/LocationsView.vue'),
+    },
+    {
+      path: '/forecast/:location',
+      name: 'forecast',
+      component: ForecastView,
+      props: true,
+    },
   ],
 })
 

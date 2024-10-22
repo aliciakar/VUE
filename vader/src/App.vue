@@ -4,7 +4,7 @@
   <header>
     <nav>
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/locations">Locations</RouterLink>
     </nav>
   </header>
 
