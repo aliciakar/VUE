@@ -57,7 +57,10 @@ watchEffect(() => {
     <p class="location">
       Long: <span> {{ currentLocation.position.long.toFixed(3) }}</span>
     </p>
-    <CurrentResult :cuwea="current" />
+    <div id="currentbox">
+      <CurrentResult :cuwea="current" />
+    </div>
+    <h2>Forecast</h2>
     <ForecastResult :forecast="forecast" />
   </template>
 </template>
@@ -65,5 +68,8 @@ watchEffect(() => {
 .location {
   display: inline-block;
   margin: 0 1em;
+}
+#currentbox{
+  margin:10px;
 }
 </style>

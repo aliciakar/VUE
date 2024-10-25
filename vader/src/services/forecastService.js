@@ -90,6 +90,7 @@ function transformCurrentData(raw) {
     },
     humidity: {
       relativehumidity: raw.current.relative_humidity_2m,
+      unit:raw.current_units.relative_humidity_2m
     },
     wind: {
       direction: raw.current.wind_direction_10m,
@@ -105,6 +106,10 @@ function transformCurrentData(raw) {
     pressure: {
       pressure: raw.current.pressure_msl,
       unit: raw.current_units.pressure_msl,
+    },
+    precipitation: {
+      precip: raw.current.precipitation,
+      unit: raw.current_units.precipitation,
     },
   }
   currentWeatherData.weather.push(data)

@@ -1,7 +1,10 @@
-<script setup></script>
+<script setup>
+import BurgerMenu from './components/BurgerMenu.vue';
+</script>
 
 <template>
   <header>
+    <BurgerMenu />
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/locations">Locations</RouterLink>
