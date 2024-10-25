@@ -14,6 +14,7 @@ function getText(code) {
 }
 </script>
 <template>
+  <br />
   <ul>
     <li>Date</li>
     <li>Temp</li>

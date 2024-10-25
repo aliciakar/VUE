@@ -1,6 +1,7 @@
 <script setup>
+import CurrentResult from '@/components/CurrentResult.vue'
 import ForecastResult from '@/components/ForecastResult.vue'
-import { getForecast } from '@/services/forecastService'
+import { getForecast, getCurrentWeather } from '@/services/forecastService'
 import { watchEffect, ref } from 'vue'
 
 const currentLocation = ref({
@@ -9,7 +10,8 @@ const currentLocation = ref({
   name: 'Nuvarande position',
 })
 
-const info = ref({})
+const current = ref({})
+const forecast = ref({})
 const props = defineProps(['location'])
 
 watchEffect(() => {
@@ -26,7 +28,14 @@ watchEffect(() => {
   if (currentLocation.value) {
     getForecast(currentLocation.value)
       .then(response => {
-        info.value = response
+        forecast.value = response
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    getCurrentWeather(currentLocation.value)
+      .then(response => {
+        current.value = response
       })
       .catch(err => {
         console.log(err)
@@ -48,7 +57,8 @@ watchEffect(() => {
     <p class="location">
       Long: <span> {{ currentLocation.position.long.toFixed(3) }}</span>
     </p>
-    <ForecastResult :forecast="info" />
+    <CurrentResult :cuwea="current" />
+    <ForecastResult :forecast="forecast" />
   </template>
 </template>
 <style scoped>

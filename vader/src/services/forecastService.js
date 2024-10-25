@@ -29,7 +29,7 @@ export function getCurrentWeather(location) {
         }
       })
       .then(data => {
-        resolve(transformData(data))
+        resolve(transformCurrentData(data))
       })
   })
 }
@@ -69,4 +69,44 @@ function transformData(raw) {
     weatherData.weather.push(data)
   }
   return weatherData
+}
+
+function transformCurrentData(raw) {
+  let currentWeatherData = {}
+  currentWeatherData.position = { lat: raw.latitude, long: raw.longitude }
+  currentWeatherData.timezone = {
+    offset: raw.utc_offset_seconds,
+    name: raw.timezone,
+    short: raw.timezone_abbreviation,
+  }
+
+  currentWeatherData.weather = []
+  let data = {
+    code: raw.current.weather_code,
+    temp: {
+      temp: raw.current.temperature_2m,
+      aptemp: raw.current.apparent_temperature,
+      unit: raw.current_units.temperature_2m,
+    },
+    humidity: {
+      relativehumidity: raw.current.relative_humidity_2m,
+    },
+    wind: {
+      direction: raw.current.wind_direction_10m,
+      direction_unit: raw.current_units.wind_direction_10m,
+      speed: raw.current.wind_speed_10m,
+      gusts: raw.current.wind_gusts_10m,
+      unit: raw.current_units.wind_speed_10m,
+    },
+    cloud: {
+      cover: raw.current.cloud_cover,
+      unit: raw.current_units.cloud_cover,
+    },
+    pressure: {
+      pressure: raw.current.pressure_msl,
+      unit: raw.current_units.pressure_msl,
+    },
+  }
+  currentWeatherData.weather.push(data)
+  return currentWeatherData
 }
