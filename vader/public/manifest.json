@@ -1,0 +1,20 @@
+{
+  "name": "Väderapp",
+  "short_name": "Vadapp",
+  "icons": [
+    {
+      "src": "img/icons/glum192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/glum512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "theme_color": "#4DBA87"
+}

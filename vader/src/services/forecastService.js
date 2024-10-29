@@ -1,3 +1,4 @@
+//Funktion som hämtar forecast från givet API
 export function getForecast(location) {
   return new Promise((resolve, reject) => {
     fetch(
@@ -16,6 +17,7 @@ export function getForecast(location) {
   })
 }
 
+//Funktion som hämtar vädret från givet API
 export function getCurrentWeather(location) {
   return new Promise((resolve, reject) => {
     fetch(
@@ -34,6 +36,8 @@ export function getCurrentWeather(location) {
   })
 }
 
+//Funktion för att transformera json datan till data som används i komponenterna
+//För forecast vädret
 function transformData(raw) {
   let weatherData = {}
   weatherData.position = { lat: raw.latitude, long: raw.longitude }
@@ -59,7 +63,7 @@ function transformData(raw) {
         unit: raw.daily_units.precipitation_sum,
       },
       wind: {
-        direction: raw.daily.wind_direction_10m_dominant[1],
+        direction: raw.daily.wind_direction_10m_dominant[i],
         direction_unit: raw.daily_units.wind_direction_10m_dominant,
         speed: raw.daily.wind_speed_10m_max[i],
         gusts: raw.daily.wind_gusts_10m_max[i],
@@ -71,6 +75,8 @@ function transformData(raw) {
   return weatherData
 }
 
+//Funktion för att transformera json datan till data som används i komponenterna
+//För dagens väder
 function transformCurrentData(raw) {
   let currentWeatherData = {}
   currentWeatherData.position = { lat: raw.latitude, long: raw.longitude }
@@ -90,7 +96,7 @@ function transformCurrentData(raw) {
     },
     humidity: {
       relativehumidity: raw.current.relative_humidity_2m,
-      unit:raw.current_units.relative_humidity_2m
+      unit: raw.current_units.relative_humidity_2m,
     },
     wind: {
       direction: raw.current.wind_direction_10m,

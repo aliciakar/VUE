@@ -2,10 +2,12 @@
 import { onMounted, ref } from 'vue'
 import BurgerMenu from './components/BurgerMenu.vue'
 onMounted(() => {
+  //Vid mount kollar om locations finns och hämtar dem från localstorage
   let locations = JSON.parse(localStorage.getItem('locations'))
+  //Finns inga locations läggs det till Greenwich som default
   if (!locations) {
     locations = [
-      { name: 'Mariehamn', position: { lat: 60, long: 20 }, default: true },
+      { name: 'Greenwich', position: { lat: 51.47, long: 0 }, default: true },
     ]
     localStorage.setItem('locations', JSON.stringify(locations))
   }
@@ -14,12 +16,10 @@ const menuActive = ref(false)
 </script>
 
 <template>
+  <!--Menyn-->
   <header>
     <BurgerMenu @toggle-menu="menuActive = !menuActive" :active="menuActive" />
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/locations">Locations</RouterLink>
-    </nav>
+    <br />
   </header>
 
   <RouterView />
