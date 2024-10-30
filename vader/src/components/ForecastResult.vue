@@ -46,6 +46,11 @@ function getWindDirection(deg) {
   hämtas från forecastservice och forecastview-->
   <ul v-for="day in props.forecast.weather" :key="day">
     <li>
+      {{
+        new Date(day.date).toLocaleDateString('en-EN', {
+          weekday: 'long',
+        })
+      }}
       {{ new Date(day.date).getDate() }}.{{ new Date(day.date).getMonth() + 1 }}
       {{ getText(day.code) }}
     </li>
