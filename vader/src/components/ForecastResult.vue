@@ -38,6 +38,7 @@ function getWindDirection(deg) {
   <br />
   <ul>
     <li>Date</li>
+    <li>Weather</li>
     <li>Temp</li>
     <li>Precip</li>
     <li>Wind</li>
@@ -52,6 +53,8 @@ function getWindDirection(deg) {
         })
       }}
       {{ new Date(day.date).getDate() }}.{{ new Date(day.date).getMonth() + 1 }}
+    </li>
+    <li>
       {{ getText(day.code) }}
     </li>
     <li>
@@ -73,7 +76,9 @@ function getWindDirection(deg) {
 ul {
   padding: 0;
   display: grid;
-  grid-template-columns: 22% 22% 15% auto;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 0;
+  margin: 0;
 }
 
 /*Varannan är blå, varannan gul*/
