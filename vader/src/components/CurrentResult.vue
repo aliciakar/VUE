@@ -68,9 +68,10 @@ function getWindDirection(deg) {
 ul {
   padding: 0;
   display: grid;
-  grid-template-columns: 22% 22% 15% auto;
+  grid-template-columns: repeat(4, 1fr);
   background-color: rgb(222, 248, 255);
   border: 2px rgb(153, 153, 220) dashed;
+  min-width: 400px;
 }
 
 li {

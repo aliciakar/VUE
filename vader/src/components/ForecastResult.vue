@@ -79,6 +79,7 @@ ul {
   grid-template-columns: repeat(5, 1fr);
   padding: 0;
   margin: 0;
+  min-width: 400px;
 }
 
 /*Varannan är blå, varannan gul*/
