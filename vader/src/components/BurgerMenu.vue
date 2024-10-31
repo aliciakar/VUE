@@ -39,6 +39,10 @@ function closeMenu() {
 /*Listan och grafiskt */
 #burger {
   display: block;
+  position: relative;
+  height: 30px;
+  width: 40px;
+  display: block;
 }
 .burger-button {
   position: relative;

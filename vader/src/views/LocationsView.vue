@@ -240,6 +240,7 @@ h3 {
 
 ul {
   padding: 0;
+  min-width: 100px;
 }
 
 li {
